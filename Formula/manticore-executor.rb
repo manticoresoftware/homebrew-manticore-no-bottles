@@ -1,26 +1,29 @@
+require_relative 'manticore_helper'
+require 'hardware'
+require "fileutils"
+
 class ManticoreExecutor < Formula
   desc "Custom built PHP to run misc scripts of Manticore"
   homepage "https://github.com/manticoresoftware/executor"
-  url "https://github.com/manticoresoftware/executor.git", revision: "bdbbe72e6f1306c501f16e603fb9c761a46d0054"
-  version "0.6.9-2023033016-bdbbe72"
   license "GPL-2.0"
 
-  depends_on "autoconf" => :build
-  depends_on "automake" => :build
-  depends_on "bison" => :build
-  depends_on "curl" => :build
-  depends_on "make" => :build
-  depends_on "pkg-config" => :build
-  depends_on "re2c" => :build
-  depends_on "libzip" => :build
+  arch = Hardware::CPU.arch
+  base_url = 'https://repo.manticoresearch.com/repository/manticoresearch_macos/dev/'
+  fetched_info = ManticoreHelper.fetch_version_and_url(
+    'manticore-executor',
+    base_url,
+    /(manticore-executor_)(\d+\.\d+\.\d+\-)(\d+\-)([\w]+)(_macos_#{arch}\.tar\.gz)/
+  )
+
+  version fetched_info[:version]
+  url fetched_info[:file_url]
+  sha256 fetched_info[:sha256]
+
   depends_on "openssl"
   depends_on "zstd"
 
   def install
-    php_version = "8.2.4"
-    php_dir = `pwd`.strip + "/build"
-    system "./build-osx", php_version, "1"
-    bin.install "#{php_dir}/dist/bin/php" => "manticore-executor"
+    bin.install "manticore-executor" => "manticore-executor"
   end
 
   test do
