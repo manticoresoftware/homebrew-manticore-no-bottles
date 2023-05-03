@@ -1,34 +1,7 @@
-require_relative 'manticore_helper'
-require 'hardware'
-require "fileutils"
+require_relative 'manticore-buddy-dev'
 
-class ManticoreBuddy < Formula
-  desc "Manticore Search's sidecar which helps it with various tasks"
-  homepage "https://github.com/manticoresoftware/manticoresearch-buddy"
-  license "GPL-2.0"
-
-  arch = Hardware::CPU.arch
-  base_url = 'https://repo.manticoresearch.com/repository/manticoresearch_macos/dev/'
-  fetched_info = ManticoreHelper.fetch_version_and_url(
-    'manticore-buddy',
-    base_url,
-    /(manticore-buddy_)(\d+\.\d+\.\d+_)(\d+\.)([\w]+)(\.tar\.gz)/
-  )
-
-  version fetched_info[:version]
-  url fetched_info[:file_url]
-  sha256 fetched_info[:sha256]
-
-  depends_on "curl"
-
-  def install
-    (share/"manticore").mkpath
-    share.install "share/modules" => "manticore/modules"
-    bin.install "bin/manticore-buddy" => "manticore-buddy"
-  end
-
-  test do
-    File.file? "#{share}/manticore/modules/manticore-buddy/src/main.php"
-    File.file? "#{bin}/manticore-buddy"
-  end
+class ManticoreBuddy < ManticoreBuddyDev
+  version '0.5.14-23041106-c79848d'
+  url 'https://repo.manticoresearch.com/repository/manticoresearch_macos/release/manticore-backup_0.5.14-23041106-c79848d.tar.gz'
+  sha256 'e921fdb27dd70ced0e1d5cdd4c91b11c34622dce319bb1afb7467b7b02903481'
 end

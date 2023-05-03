@@ -29,6 +29,18 @@ module ManticoreHelper
     }
   end
 
+  def self.fetch_version_from_url(url)
+    version = url.match(/(?<=-)[\d\w\._]+(?=-|\_)/).to_s
+    formula_name = url.match(/(?<=release\/)[\w-]+(?=-)/).to_s
+    filepath, sha256 = download_file(formula_name, url)
+
+    {
+      version: version,
+      file_url: "file://#{filepath}",
+      sha256: sha256
+    }
+  end
+
   def self.download_file(formula_name, url)
     tmpdir = Dir.mktmpdir
     filepath = "#{tmpdir}/#{formula_name}.tar.gz"
