@@ -1,7 +1,12 @@
 require_relative 'manticore-buddy-dev'
+require_relative 'manticore_helper'
 
 class ManticoreBuddy < ManticoreBuddyDev
-  version '0.5.14-23041106-c79848d'
-  url 'https://repo.manticoresearch.com/repository/manticoresearch_macos/release/manticore-backup_0.5.14-23041106-c79848d.tar.gz'
-  sha256 'e921fdb27dd70ced0e1d5cdd4c91b11c34622dce319bb1afb7467b7b02903481'
+  fetched_info = ManticoreHelper.fetch_version_from_url(
+    "https://repo.manticoresearch.com/repository/manticoresearch_macos/dev/manticore-buddy_1.0.3_23050204.80bf425.tar.gz"
+  )
+
+  version fetched_info[:version]
+  url fetched_info[:file_url]
+  sha256 fetched_info[:sha256]
 end

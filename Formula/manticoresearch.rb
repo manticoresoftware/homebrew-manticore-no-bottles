@@ -5,7 +5,7 @@ require 'hardware'
 class Manticoresearch < ManticoresearchDev
   arch = Hardware::CPU.arch
   fetched_info = ManticoreHelper.fetch_version_from_url(
-    "https://repo.manticoresearch.com/repository/manticoresearch_macos/release/manticore-6.0.4-230314-1a3a4ea82-osx11.6-#{arch}-main.tar.gz"
+    "https://repo.manticoresearch.com/repository/manticoresearch_macos/dev/manticore-6.0.5-230503-ced679ae3-osx11.6-#{arch}-main.tar.gz"
   )
 
   version fetched_info[:version]
