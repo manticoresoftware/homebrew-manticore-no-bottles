@@ -7,8 +7,8 @@ class ManticoreExtraDev < Formula
   version "0.6.9-2023033016-bdbbe72" # Must be same as executor
   sha256 Digest::SHA256.file(File.expand_path(__FILE__)).hexdigest
 
-  depends_on "manticoresoftware/manticore-no-bottles/manticore-columnar-lib"
-  depends_on "manticoresoftware/manticore-no-bottles/manticore-executor"
+  depends_on "manticoresoftware/manticore-no-bottles/manticore-columnar-lib-dev"
+  depends_on "manticoresoftware/manticore-no-bottles/manticore-executor-dev"
 
   def install
     File.open("manticore-extra", "w") do |file|
