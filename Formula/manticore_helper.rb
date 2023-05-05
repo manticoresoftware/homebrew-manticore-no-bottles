@@ -15,7 +15,7 @@ module ManticoreHelper
       versions << { semver: semver, date: date, hash_id: hash_id, file: "#{match[0]}#{semver}#{date}#{hash_id}#{match[4]}" }
     end
 
-    versions.sort_by! { |v| [v[:semver], v[:date], v[:hash_id]] }.reverse!
+    versions.sort_by! { |v| [v[:semver], v[:date] }.reverse!
 
     highest_version = "#{versions.first[:semver]}#{versions.first[:date]}-#{versions.first[:hash_id]}"
     highest_version_url = base_url + versions.first[:file]
