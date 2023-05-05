@@ -9,7 +9,7 @@ class ManticoresearchDev < Formula
   arch = Hardware::CPU.arch
   base_url = 'https://repo.manticoresearch.com/repository/manticoresearch_macos/dev/'
   fetched_info = ManticoreHelper.fetch_version_and_url(
-    'manticorsearch',
+    'manticoresearch',
     base_url,
     /(manticore-)(\d+\.\d+\.\d+-)(\d+-)([\w]+)(-osx11\.6-#{arch}-main\.tar\.gz)/
   )
