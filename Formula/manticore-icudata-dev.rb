@@ -16,7 +16,7 @@ class ManticoreIcudataDev < Formula
 
   def install
     (share/"manticore/icu").mkpath
-    share.install "manticore/icu/icudt65l.dat" => "manticore/icu/icudt65l.dat"
+    share.install "local/share/manticore/icu/icudt65l.dat" => "manticore/icu/icudt65l.dat"
   end
 
   test do
