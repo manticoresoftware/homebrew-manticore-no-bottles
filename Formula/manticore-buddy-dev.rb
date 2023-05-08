@@ -23,6 +23,7 @@ class ManticoreBuddyDev < Formula
 
   def install
     (share/"manticore").mkpath
+    (share/"manticore/modules").mkpath
     share.install "share/modules" => "manticore/modules"
     bin.install "bin/manticore-buddy" => "manticore-buddy"
   end
